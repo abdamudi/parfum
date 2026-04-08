@@ -1,0 +1,326 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>King Parfum — Artisan Fragrances</title>
+<meta name="description" content="King Parfum — luxury artisan perfumes. Discover oud, amber, rose, and musk." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0b0b0e; --bg-2:#12121a; --fg:#f7f7fb; --muted:#b8b8c6;
+  --gold:#d4af37; --gold-2:#b9972f; --card:#161622cc; --glass: rgba(255,255,255,0.06);
+  --border: rgba(255,255,255,0.12); --shadow: 0 10px 30px rgba(0,0,0,0.35);
+  --radius: 18px; --radius-lg: 26px; --pad: clamp(16px, 3vw, 28px); --max: 1200px;
+}
+*{box-sizing:border-box} html,body{height:100%}
+body{margin:0; color:var(--fg); background: radial-gradient(1200px 800px at 70% -10%, #1b1b2a 0%, #0b0b0e 55%) fixed; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; line-height:1.6; overflow-x:hidden}
+h1,h2,h3{font-family:"Playfair Display",serif; line-height:1.15; margin:0 0.4em} p{margin:0 0 1em; color:var(--muted)}
+a{color:inherit; text-decoration:none} img{max-width:100%; display:block} button{font:inherit; cursor:pointer}
+.container{width:min(100%, var(--max)); margin-inline:auto; padding-inline: var(--pad)}
+.glass{background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02)); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border:1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow)}
+.btn{display:inline-flex; align-items:center; gap:.6em; padding:.9em 1.2em; border-radius:999px; border:1px solid var(--border); background:linear-gradient(180deg, rgba(212,175,55,.2), rgba(212,175,55,.05)); color:var(--fg); font-weight:600; transition: transform.2s ease, box-shadow.2s ease, background.2s ease}
+.btn:hover{ transform: translateY(-2px); box-shadow:0 10px 24px rgba(212,175,55,.18) }
+.btn.ghost{ background: transparent }.btn.gold{ background: linear-gradient(180deg, var(--gold), var(--gold-2)); color:#191919; border-color: transparent }
+.chip{padding:.45em.8em; border-radius:999px; border:1px solid var(--border); background:var(--glass); color:var(--fg); font-size:.9rem}
+.tag{font-size:.75rem; letter-spacing:.08em; text-transform:uppercase; color:var(--gold)}
+.grid{display:grid; gap: clamp(14px, 2vw, 22px)}
+.sr-only{position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0}
+.topbar{border-bottom:1px solid var(--border); background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,0)); font-size:.92rem}
+.topbar.container{display:flex; gap:14px; align-items:center; justify-content:flex-end; padding-block:8px}
+.topbar a{display:inline-flex; align-items:center; gap:.5em; color:var(--muted)}
+.topbar a:hover{color:var(--fg)}
+header{position:sticky; top:0; z-index:50; backdrop-filter:saturate(140%) blur(8px); background: linear-gradient(180deg, rgba(10,10,14,.85), rgba(10,10,14,.35)); border-bottom:1px solid var(--border)}
+.nav{display:flex; align-items:center; justify-content:space-between; gap:16px; padding: 12px var(--pad)}
+.brand{display:flex; align-items:center; gap:.7em; font-weight:700}
+.brand.logo{width:34px; height:34px; border-radius:10px; background: conic-gradient(from 210deg at 50% 50%, var(--gold), #fff0 30%, var(--gold-2) 60%, #fff0 85%, var(--gold)); box-shadow: inset 0 0 0 1px rgba(255,255,255,.2), 0 6px 16px rgba(212,175,55,.25)}
+.brand span{font-family:"Playfair Display",serif; letter-spacing:.5px}
+.navlinks{display:flex; gap:10px; align-items:center; flex-wrap:wrap}
+.navlinks a{padding:.6em.9em; border-radius:999px; border:1px solid transparent; color:var(--muted)}
+.navlinks a.active,.navlinks a:hover{ color:var(--fg); border-color:var(--border); background:var(--glass) }
+.cart-btn{position:relative}
+.cart-count{position:absolute; top:-6px; right:-6px; background:var(--gold); color:#111; font-weight:700; font-size:.75rem; width:20px; height:20px; display:grid; place-items:center; border-radius:999px; box-shadow:0 6px 14px rgba(212,175,55,.35)}
+.hero{position:relative; isolation:isolate; overflow:hidden; border-bottom:1px solid var(--border); background: radial-gradient(800px 500px at 15% 10%, rgba(212,175,55,.16), transparent 60%), radial-gradient(700px 420px at 90% 20%, rgba(123,97,255,.12), transparent 60%)}
+.hero.wrap{display:grid; grid-template-columns:1.2fr.8fr; align-items:center; gap: clamp(20px, 4vw, 60px); padding-block: clamp(60px, 10vw, 120px)}
+@media (max-width:900px){.hero.wrap{grid-template-columns:1fr; text-align:center}.hero-visual{order:-1} }
+.kicker{display:inline-block; margin-bottom:10px}.title{font-size: clamp(2rem, 6vw, 4rem)}.subtitle{font-size: clamp(1rem, 2.2vw, 1.2rem)}
+.hero-cta{display:flex; gap:12px; margin-top:22px; flex-wrap:wrap}
+.hero-visual{position:relative; aspect-ratio: 4/5; border-radius: var(--radius-lg); overflow:hidden; background: linear-gradient(160deg, rgba(255,255,255,.06), rgba(255,255,255,.01)); border:1px solid var(--border); box-shadow: var(--shadow)}
+.hero-visual::before{content:""; position:absolute; inset:-40%; background: radial-gradient(closest-side, rgba(212,175,55,.18), transparent 70%) 30% 20%/60% 60% no-repeat, radial-gradient(closest-side, rgba(124, 92, 255,.16), transparent 70%) 70% 70%/55% 55% no-repeat; filter: blur(20px); animation: floatGlow 12s ease-in-out infinite alternate}
+@keyframes floatGlow{ to{ transform: translate3d(4%, -3%, 0) scale(1.05) rotate(6deg) } }
+.bottle{position:absolute; inset:0; display:grid; place-items:center; transform-style:preserve-3d; perspective:1000px}
+.bottle img{width:min(70%, 340px); filter: drop-shadow(0 30px 40px rgba(0,0,0,.55)); transform: translateZ(40px); animation: bob 6s ease-in-out infinite}
+@keyframes bob{ 0%,100%{ transform: translateY(-6px) translateZ(40px) rotateZ(-2deg)} 50%{ transform: translateY(8px) translateZ(40px) rotateZ(2deg)} }
+.sparkles{ position:absolute; inset:0; pointer-events:none; opacity:.7}
+.sparkles i{position:absolute; width:6px; height:6px; border-radius:50%; background: radial-gradient(circle, #fff, #fff0 60%); animation: twinkle 3.5s ease-in-out infinite; mix-blend-mode: screen}
+@keyframes twinkle{ 0%,100%{ opacity:.15; transform:scale(.6)} 50%{ opacity:1; transform:scale(1)} }
+section{ padding-block: clamp(48px, 8vw, 90px); border-bottom:1px solid var(--border) }
+.section-head{display:flex; align-items:end; justify-content:space-between; gap:16px; margin-bottom:22px}
+.section-head h2{font-size: clamp(1.6rem, 3.6vw, 2.4rem)}.muted{color:var(--muted)}
+.filters{display:flex; gap:8px; flex-wrap:wrap}.products{grid-template-columns: repeat(12, 1fr)}
+.card{grid-column: span 4; position:relative; overflow:hidden; border-radius: var(--radius); background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.015)); border:1px solid var(--border); box-shadow: var(--shadow); transform: translateY(12px); opacity:0}
+@media (max-width:1000px){.card{ grid-column: span 6 } } @media (max-width:640px){.card{ grid-column: span 12 } }
+.card-inner{ padding:16px }.thumb{position:relative; border-radius: calc(var(--radius) - 6px); overflow:hidden; aspect-ratio: 4/5; background: #0f0f16; border:1px solid var(--border)}
+.thumb img{ width:100%; height:100%; object-fit:cover; transform:scale(1.02); transition: transform.6s cubic-bezier(.2,.7,.2,1)}.card:hover.thumb img{ transform: scale(1.08) }
+.price-row{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:12px}.price{font-weight:700}.old{color:#8f8fa3; text-decoration:line-through; font-weight:500; margin-left:.4em; font-size:.9em}
+.reveal{height:0; overflow:hidden; transition: height.5s ease}.card:hover.reveal{ height:46px }
+.badges{ position:absolute; top:10px; left:10px; display:flex; gap:8px; z-index:2}.badge{ padding:.35em.6em; border-radius:999px; background: rgba(0,0,0,.5); border:1px solid var(--border); font-size:.75rem }
+.quick{ position:absolute; right:10px; top:10px; z-index:2; display:flex; gap:8px }
+.iconbtn{ width:38px; height:38px; display:grid; place-items:center; border-radius:999px; border:1px solid var(--border); background: rgba(0,0,0,.35); backdrop-filter: blur(6px); transition: transform.2s ease}.iconbtn:hover{ transform: translateY(-2px) }
+.card.in{ opacity:1; transform: translateY(0); transition: transform.7s cubic-bezier(.2,.7,.2,1), opacity.7s }
+.timeline{ position:relative; padding-left:20px }.timeline::before{ content:""; position:absolute; left:6px; top:0; bottom:0; width:2px; background:linear-gradient(var(--gold), transparent) }
+.milestone{ position:relative; margin:18px 0; padding-left:16px }.milestone::before{ content:""; position:absolute; left:-2px; top:.35em; width:12px; height:12px; border-radius:50%; background: radial-gradient(circle at 30% 30%, #fff, var(--gold) 60%, var(--gold-2)); box-shadow:0 0 0 4px rgba(212,175,55,.15)}
+.field{ position:relative }.field input,.field textarea{ width:100%; padding:18px 14px 14px; border-radius:14px; border:1px solid var(--border); background: rgba(255,255,255,.03); color:var(--fg); outline:none; transition: border.2s, background.2s}
+.field textarea{ min-height:140px; resize:vertical }.field label{ position:absolute; left:12px; top:12px; padding:0 6px; color:var(--muted); pointer-events:none; background: linear-gradient(180deg, rgba(18,18,26,0), rgba(18,18,26,.9) 40%, rgba(18,18,26,.9)); transform-origin:left top; transition: transform.2s, color.2s, top.2s}
+.field input:focus,.field textarea:focus{ border-color: rgba(212,175,55,.6); background: rgba(212,175,55,.04) }.field input:focus + label,.field input:not(:placeholder-shown) + label,.field textarea:focus + label,.field textarea:not(:placeholder-shown) + label{ top:-8px; transform: scale(.85); color: var(--gold)}
+.drawer{ position:fixed; inset:0 0 0 auto; width:min(92vw, 420px); transform: translateX(105%); background: rgba(14,14,20,.8); backdrop-filter: blur(14px); border-left:1px solid var(--border); box-shadow: -30px 0 60px rgba(0,0,0,.45); z-index:80; display:flex; flex-direction:column; transition: transform.45s cubic-bezier(.2,.8,.2,1)}
+.drawer.open{ transform: translateX(0) }.drawer header{ position:sticky; top:0; background:transparent; border-bottom:1px solid var(--border) }.drawer.content{ padding:16px; overflow:auto; flex:1 }
+.cart-item{ display:grid; grid-template-columns:64px 1fr auto; gap:12px; align-items:center; padding:10px; border-radius:14px; border:1px solid var(--border); background: var(--glass); margin-bottom:10px }
+.cart-item img{ width:64px; height:64px; object-fit:cover; border-radius:10px; border:1px solid var(--border) }
+.qty{ display:inline-flex; align-items:center; border:1px solid var(--border); border-radius:999px; overflow:hidden }.qty button{ width:32px; height:32px; background:transparent; color:var(--fg); border:0 }.qty span{ display:inline-block; min-width:26px; text-align:center }
+.drawer footer{ border-top:1px solid var(--border); padding:14px; background: rgba(10,10,14,.6) }.total{ display:flex; align-items:center; justify-content:space-between; margin-bottom:10px }
+.backdrop{ position:fixed; inset:0; background: rgba(0,0,0,.45); opacity:0; pointer-events:none; transition: opacity.3s; z-index:70 }.backdrop.show{ opacity:1; pointer-events:auto }
+main{ position:relative }.page{ position:absolute; inset:0; opacity:0; transform: translateY(10px) scale(.98); pointer-events:none; transition: opacity.45s ease, transform.5s cubic-bezier(.2,.8,.2,1)}.page.active{ position:relative; opacity:1; transform: translateY(0) scale(1); pointer-events:auto }
+footer.site{ padding:30px var(--pad); border-top:1px solid var(--border); background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0)) }.footgrid{ display:grid; gap:18px; grid-template-columns: 1.2fr.8fr.8fr } @media (max-width:800px){.footgrid{ grid-template-columns: 1fr } }
+.toast{ position:fixed; left:50%; bottom:24px; transform: translateX(-50%) translateY(20px); padding:12px 16px; border-radius:12px; border:1px solid var(--border); background:var(--glass); box-shadow: var(--shadow); opacity:0; pointer-events:none; transition: opacity.3s, transform.3s; z-index:90 }.toast.show{ opacity:1; transform: translateX(-50%) translateY(0) }
+@media (prefers-reduced-motion: reduce){.bottle img,.hero-visual::before,.sparkles i{ animation: none; }.page,.card{ transition: none; } }
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="container">
+    <a href="tel:+255652028277" aria-label="Call King Parfum">📞 +255 652 028 277</a>
+    <span style="opacity:0.35">•</span>
+    <a href="mailto:abdamudi50@gmail.com" aria-label="Email King Parfum"> abdamudi50@gmail.com</a>
+  </div>
+</div>
+
+<header>
+  <div class="nav container">
+    <a class="brand" href="#/" aria-label="King Parfum Home">
+      <div class="logo" aria-hidden="true"></div>
+      <span>King Parfum</span>
+    </a>
+    <nav class="navlinks" aria-label="Primary">
+      <a href="#/" data-link>Home</a>
+      <a href="#/shop" data-link>Shop</a>
+      <a href="#/about" data-link>About</a>
+      <a href="#/contact" data-link>Contact</a>
+      <button class="btn ghost cart-btn" id="openCart" aria-label="Open cart">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6h15l-2 9H8L6 6Z" stroke="currentColor" stroke-width="1.5"/><circle cx="10" cy="20" r="1.5" fill="currentColor"/><circle cx="17" cy="20" r="1.5" fill="currentColor"/></svg>
+        Cart <span class="cart-count" id="cartCount">0</span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <!-- HOME -->
+  <section class="page active" id="page-home" aria-labelledby="home-title">
+    <div class="hero glass" style="border-radius: var(--radius-lg); margin-top:18px;">
+      <div class="wrap container">
+        <div>
+          <span class="tag kicker">Artisan • Small Batch • Zanzibar</span>
+          <h1 class="title" id="home-title">Fragrance as Ritual.</h1>
+          <p class="subtitle muted">King Parfum blends heritage oud, amber, and spice with modern clarity. Discover scents that linger like memory.</p>
+          <div class="hero-cta">
+            <a class="btn gold" href="#/shop" data-link>Shop the Collection</a>
+            <a class="btn" href="#/about" data-link>Our Story</a>
+          </div>
+          <div style="margin-top:18px; display:flex; gap:8px; flex-wrap:wrap">
+            <span class="chip">Vegan</span><span class="chip">IFRA-compliant</span><span class="chip">Long-lasting</span>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="bottle">
+            <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?q=80&w=900&auto=format&fit=crop" alt="Perfume bottle">
+          </div>
+          <div class="sparkles" aria-hidden="true"></div>
+        </div>
+      </div>
+    </div>
+
+    <section>
+      <div class="section-head">
+        <h2>Signature Picks</h2>
+        <a class="btn ghost" href="#/shop" data-link>View all</a>
+      </div>
+      <div class="grid products" id="featuredGrid"></div>
+    </section>
+
+    <section class="glass" style="padding: var(--pad);">
+      <div class="grid" style="grid-template-columns: repeat(12,1fr); align-items:center;">
+        <div style="grid-column: span 7">
+          <span class="tag">Notes</span>
+          <h2>Oud • Amber • Rose • Musk</h2>
+          <p class="muted">Each composition is built around a core accord, layered with spices and woods that evolve on skin over hours.</p>
+        </div>
+        <div style="grid-column: span 5">
+          <div class="glass" style="padding:18px;">
+            <strong>Newsletter</strong>
+            <p class="muted" style="margin-top:6px">Get early access to limited drops.</p>
+            <form id="newsletter" style="display:flex; gap:8px; margin-top:8px">
+              <input required type="email" placeholder="your@email" aria-label="Email" style="flex:1; padding:12px 14px; border-radius:12px; border:1px solid var(--border); background:rgba(255,255,255,.03); color:var(--fg)">
+              <button class="btn gold" type="submit">Subscribe</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <!-- SHOP -->
+  <section class="page" id="page-shop" aria-labelledby="shop-title">
+    <div class="section-head" style="margin-top:18px">
+      <div>
+        <span class="tag">Catalog</span>
+        <h2 id="shop-title">Shop</h2>
+        <p class="muted">Small-batch perfumes, crafted in Zanzibar.</p>
+      </div>
+      <div class="filters" role="tablist" aria-label="Filter by family">
+        <button class="chip" data-filter="all" aria-pressed="true">All</button>
+        <button class="chip" data-filter="oud">Oud</button>
+        <button class="chip" data-filter="amber">Amber</button>
+        <button class="chip" data-filter="rose">Rose</button>
+        <button class="chip" data-filter="fresh">Fresh</button>
+      </div>
+    </div>
+    <div class="grid products" id="shopGrid"></div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="page" id="page-about" aria-labelledby="about-title">
+    <div class="glass" style="padding: var(--pad); margin-top:18px">
+      <span class="tag">House of King</span>
+      <h2 id="about-title">Our Story</h2>
+      <p class="muted">Born on the Swahili coast, king Parfum marries traditional attars with contemporary perfumery. We source responsibly, distill patiently, and blend for character, not just projection.</p>
+      <div class="timeline" style="margin-top:16px">
+        <div class="milestone"><strong>2017</strong> — First attar experiments with local oud and clove.</div>
+        <div class="milestone"><strong>2020</strong> — Launch of Noir; first 300 bottles sell out in a week.</div>
+        <div class="milestone"><strong>2024</strong> — Stone Town atelier opens; refill program begins.</div>
+        <div class="milestone"><strong>2026</strong> — Global shipping & limited artist collaborations.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="page" id="page-contact" aria-labelledby="contact-title">
+    <div class="glass" style="padding: var(--pad); margin-top:18px">
+      <span class="tag">Get in touch</span>
+      <h2 id="contact-title">Contact</h2>
+      <p class="muted">Questions, wholesale, or private blending sessions. Reach us directly:</p>
+      <p class="muted" style="margin:8px 0 16px">
+        <strong>Phone:</strong> <a href="tel:+255656038071">+255 656 038 071</a> ;
+        <strong>Email:</strong> <a href="mailto:abdamudi50@gmail.com">abdamudi50@gmail.com</a>
+      </p>
+      <form id="contactForm" style="display:grid; gap:12px; margin-top:12px; grid-template-columns: repeat(12,1fr)">
+        <div class="field" style="grid-column: span 6"><input id="name" placeholder=" " required><label for="name">Name</label></div>
+        <div class="field" style="grid-column: span 6"><input id="email" type="email" placeholder=" " required><label for="email">Email</label></div>
+        <div class="field" style="grid-column: span 12"><input id="subject" placeholder=" "><label for="subject">Subject</label></div>
+        <div class="field" style="grid-column: span 12"><textarea id="message" placeholder=" " required></textarea><label for="message">Message</label></div>
+        <div style="grid-column: span 12; display:flex; gap:10px; align-items:center; justify-content:space-between">
+          <span class="muted">We reply within 2 business days.</span>
+          <button class="btn gold" type="submit">Send Message</button>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<!-- Cart Drawer -->
+<div class="backdrop" id="backdrop"></div>
+<aside class="drawer" id="drawer" aria-hidden="true" aria-label="Shopping cart">
+  <header class="nav" style="padding:14px 16px">
+    <strong>Your Cart</strong>
+    <button class="btn ghost" id="closeCart" aria-label="Close cart">Close</button>
+  </header>
+  <div class="content" id="cartItems"></div>
+  <footer>
+    <div class="total"><span>Subtotal</span><strong id="cartTotal">$0.00</strong></div>
+    <button class="btn gold" style="width:100%" id="checkoutBtn">Checkout</button>
+    <p class="muted" style="font-size:.85rem; margin-top:8px">Taxes & shipping calculated at checkout.</p>
+  </footer>
+</aside>
+
+<section>
+  <div class="login">
+    <div class="glass" style="padding: var(--pad); max-width:400px; margin:18px auto; text-align:center">
+      <h2>Admin Login</h2>
+      <form id="loginForm" style="display:flex; flex-direction:column; gap:12px; margin-top:12px">
+        <input id="adminUser" type="text" placeholder="Username" required style="padding:12px 14px; border-radius:12px; border:1px solid var(--border); background:rgba(255,255,255,.03); color:var(--fg)">
+        <input id="adminPass" type="password" placeholder="Password" required style="padding:12px 14px; border-radius:12px; border:1px solid var(--border); background:rgba(255,255,255,.03); color:var(--fg)">
+        <button class="btn gold" type="submit">Login</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<footer class="site">
+  <div class="container footgrid">
+    <div>
+      <div class="brand"><div class="logo"></div><span>king Parfum</span></div>
+      <p class="muted" style="margin-top:10px">Handcrafted perfumes from Zanzibar. © <span id="year"></span> King Parfum. All rights reserved.</p>
+      <p class="muted" style="margin-top:6px">📞 <a href="tel:+255652028277">+255 656 2028277</a>; <a href="mailto:abdamudi50@gmail.com">abdamudi50@gmail.com</a></p>
+    </div>
+    <div>
+      <strong>Explore</strong>
+      <ul style="list-style:none; padding:0; margin:10px 0 0; color:var(--muted)">
+        <li><a href="#/shop" data-link>Shop</a></li>
+        <li><a href="#/about" data-link>About</a></li>
+        <li><a href="#/contact" data-link>Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <strong>Visit</strong>
+      <p class="muted" style="margin-top:10px">Stone Town, Zanzibar<br>Open Mon–Sat, 10–6</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+const PRODUCTS = [
+  {id:'noir', name:'Abdallah Noir', family:'oud', price:89, old:109, badge:'Best Seller', img:'https://images.unsplash.com/photo-1541643600914-78b084683601?q=80&w=1200&auto=format&fit=crop', desc:'Smoked oud, black pepper, vanilla.'},
+  {id:'amber', name:'Amber Crown', family:'amber', price:76, img:'https://images.unsplash.com/photo-1523293182086-7651a899d37f?q=80&w=1200&auto=format&fit=crop', desc:'Golden amber, labdanum, tonka.'},
+  {id:'rose', name:'Rose Sultan', family:'rose', price:82, badge:'Limited', img:'https://images.unsplash.com/photo-1615529151169-7b48f6d06e98?q=80&w=1200&auto=format&fit=crop', desc:'Taif rose, saffron, musk.'},
+  {id:'sea', name:'Zanzibar Sea', family:'fresh', price:68, img:'https://images.unsplash.com/photo-1543422658260-6dd47ace6d53?q=80&w=1200&auto=format&fit=crop', desc:'Sea salt, lime, vetiver.'},
+  {id:'musk', name:'White Musk', family:'fresh', price:64, img:'https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=1200&auto=format&fit=crop', desc:'Clean musk, iris, cedar.'},
+  {id:'oudrose', name:'Oud Rose Royale', family:'oud', price:96, img:'https://images.unsplash.com/photo-1608528578012-1982e96f7d66?q=80&w=1200&auto=format&fit=crop', desc:'Cambodian oud, rose, patchouli.'},
+];
+const $ = sel => document.querySelector(sel);
+const $$ = sel => Array.from(document.querySelectorAll(sel));
+const fmt = n => '$' + n.toFixed(2);
+const toast = (msg) => { const t = $('#toast'); t.textContent = msg; t.classList.add('show'); setTimeout(()=> t.classList.remove('show'), 2000); };
+const routes = {'/': 'page-home','/shop': 'page-shop','/about': 'page-about','/contact': 'page-contact'};
+function setActiveLink(path){ $$('[data-link]').forEach(a=>{ const href = a.getAttribute('href').replace('#',''); a.classList.toggle('active', href === '#'+path || (href==='#/' && path==='/')); });}
+function navigate(){ const hash = location.hash.replace('#','') || '/'; const id = routes[hash] || 'page-home'; $$('.page').forEach(p=>p.classList.remove('active')); $('#'+id).classList.add('active'); setActiveLink(hash); requestAnimationFrame(()=>{ $$('#'+id+'.card').forEach((c,i)=> setTimeout(()=> c.classList.add('in'), 60*i)); });}
+window.addEventListener('hashchange', navigate);
+function productCard(p){ return `
+  <article class="card" data-family="${p.family}">
+    <div class="badges">${p.badge?`<span class="badge">${p.badge}</span>`:''}</div>
+    <div class="quick"><button class="iconbtn" aria-label="Add ${p.name} to cart" data-add="${p.id}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6h15l-2 9H8L6 6Z" stroke="currentColor" stroke-width="1.5"/><circle cx="10" cy="20" r="1.5" fill="currentColor"/><circle cx="17" cy="20" r="1.5" fill="currentColor"/></svg></button></div>
+    <div class="thumb"><img src="${p.img}" alt="${p.name}"></div>
+    <div class="card-inner">
+      <div style="display:flex; align-items:center; justify-content:space-between; gap:10px"><h3 style="margin:0; font-size:1.1rem">${p.name}</h3><span class="tag">${p.family}</span></div>
+      <div class="reveal"><p class="muted" style="margin:10px 0 0">${p.desc}</p></div>
+      <div class="price-row"><div class="price">${fmt(p.price)} ${p.old?`<span class="old">${fmt(p.old)}</span>`:''}</div><button class="btn" data-add="${p.id}">Add to Cart</button></div>
+    </div>
+  <div class="cart-item">
+    <img src="${i.img}" alt="${i.name}">
+    <div>
+      <strong>${i.name}</strong>
+      <div style="margin-top:6px; color:var(--muted)">${fmt(i.price)} x ${i.qty}</div>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:6px; align-items:center">
+      <div class="qty" data-id="${i.id}">
+        <button data-action="decrease" aria-label="Decrease quantity of ${i.name}">-</button>
+        <span>${i.qty}</span>
+        <button data-action="increase" aria-label="Increase quantity of ${i.name}">+</button>
+      </div>
+      <button class="btn ghost" data-remove="${i.id}" aria-label="Remove ${i.name} from cart">Remove</button>
+    </div>
+  </div>`.join(''); const total = CART.reduce((sum,i)=> sum + i.price * i.qty, 0); $('#cartTotal').textContent = fmt(total); } 
